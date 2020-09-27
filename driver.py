@@ -2,8 +2,10 @@ import numpy as np
 import cv2 
 import time
 import platform
-import winkeys as wk #Keaboard keys for playing games on Windows
 from pynput.keyboard import Key, Controller
+
+if(platform.system() == "Windows"):
+    import winkeys as wk #Keaboard keys for playing games on Windows
 
 eye_cascade = cv2.CascadeClassifier("haarcascade_eye.xml")
 head_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
@@ -25,6 +27,11 @@ go_right = False
 
 while 1:
     ret, frame = cap.read()
+
+    if(frame is None):
+        print("frame is None, can't open camera")
+        break
+    
     rotate_frame_left = rotate_image(frame, 40)
     rotate_frame_right = rotate_image(frame, -40)
 
