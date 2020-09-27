@@ -31,7 +31,7 @@ while 1:
     if(frame is None):
         print("frame is None, can't open camera")
         break
-    
+
     rotate_frame_left = rotate_image(frame, 40)
     rotate_frame_right = rotate_image(frame, -40)
 
@@ -55,11 +55,11 @@ while 1:
     if(len(eyes) >= 2):
         print(f"{total_frames}. CENTER")
         if(go_left is True):
-            #keyboard.release(Key.left)
-            wk.ReleaseKey(wk.hex_left_arrow)
+            keyboard.release(Key.left)
+            #wk.ReleaseKey(wk.hex_left_arrow)
         if(go_right is True):
-            #keyboard.release(Key.right)
-            wk.ReleaseKey(wk.hex_right_arrow)
+            keyboard.release(Key.right)
+            #wk.ReleaseKey(wk.hex_right_arrow)
         go_left = False
         go_right = False
     
@@ -67,19 +67,19 @@ while 1:
         print(f"{total_frames}. LEFT")
         go_right = False
         if(go_left is False):
-            #keyboard.press(Key.left)
-            #keyboard.release(Key.right)
-            wk.PressKey(wk.hex_left_arrow)
-            wk.ReleaseKey(wk.hex_right_arrow)
+            keyboard.press(Key.left)
+            keyboard.release(Key.right)
+            #wk.PressKey(wk.hex_left_arrow)
+            #wk.ReleaseKey(wk.hex_right_arrow)
             go_left = True  
     elif(len(eyes_rotate_right) >= 2):
         print(f"{total_frames}. RIGHT")
         go_left = False
         if(go_right is False):
-            #keyboard.press(Key.right)
-            #keyboard.release(Key.left)
-            wk.PressKey(wk.hex_right_arrow)
-            wk.ReleaseKey(wk.hex_left_arrow)
+            keyboard.press(Key.right)
+            keyboard.release(Key.left)
+            #wk.PressKey(wk.hex_right_arrow)
+            #wk.ReleaseKey(wk.hex_left_arrow)
             go_right = True
     
 
