@@ -27,6 +27,7 @@ go_right = False
 
 while 1:
     ret, frame = cap.read()
+    frame = cv2.resize(frame, (480, 360), interpolation = cv2.INTER_LINEAR)
 
     if(frame is None):
         print("frame is None, can't open camera")
@@ -52,7 +53,7 @@ while 1:
     for (ex,ey,ew,eh) in eyes_rotate_right:
         cv2.rectangle(rotate_frame_right, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
     
-    if(len(eyes) >= 2):
+    if(len(eyes) >= 1):
         print(f"{total_frames}. CENTER")
         if(go_left is True):
             keyboard.release(Key.left)
@@ -63,7 +64,7 @@ while 1:
         go_left = False
         go_right = False
     
-    elif(len(eyes_rotate_left) >= 2):
+    elif(len(eyes_rotate_left) >= 1):
         print(f"{total_frames}. LEFT")
         go_right = False
         if(go_left is False):
@@ -72,7 +73,7 @@ while 1:
             #wk.PressKey(wk.hex_left_arrow)
             #wk.ReleaseKey(wk.hex_right_arrow)
             go_left = True  
-    elif(len(eyes_rotate_right) >= 2):
+    elif(len(eyes_rotate_right) >= 1):
         print(f"{total_frames}. RIGHT")
         go_left = False
         if(go_right is False):
